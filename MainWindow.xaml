@@ -43,6 +43,7 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Label Content="悬浮窗的宽度：" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"></Label>
@@ -54,7 +55,10 @@
             <Label Content="悬浮窗的字体大小：" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"></Label>
             <TextBox Grid.Column="1" Grid.Row="2" Background="White" x:Name="Text_FontSize" PreviewTextInput="WindowW_PreviewTextInput" InputMethod.IsInputMethodEnabled="false"></TextBox>
 
-            <Button x:Name="Refresh" Content="保存悬浮窗" Grid.Row="3" Grid.Column="0" Click="Refresh_Click"></Button>
+            <Label Content="悬浮窗的透明度：" Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Right"></Label>
+            <TextBox Grid.Column="1" Grid.Row="3" Background="White" x:Name="Text_Opcaity" PreviewTextInput="WindowW_PreviewTextInput" InputMethod.IsInputMethodEnabled="false"></TextBox>
+
+            <Button x:Name="Refresh" Content="保存悬浮窗" Grid.Row="4" Grid.Column="0" Click="Refresh_Click"></Button>
             
 
         </Grid>

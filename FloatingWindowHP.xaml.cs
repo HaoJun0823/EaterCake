@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -24,7 +25,7 @@ namespace EaterCake
 
         public bool closeLocker = true;
 
-
+        public IntPtr windowHandle;
         public DispatcherTimer timer;
 
 
@@ -58,6 +59,10 @@ namespace EaterCake
 
             timer.Tick += TimerUpdateEvent;
 
+            //Win32.SetWindowPos(this.Handle, -1, 0, 0, 0, 0, 0x0001 | 0x0002 | 0x0010 | 0x0080);
+
+
+            
 
         }
 
@@ -75,6 +80,26 @@ namespace EaterCake
 
             this.MouseDown += WindowMouseDown;
 
+            windowHandle = new WindowInteropHelper(this).Handle;
+
+            Win32.SetWindowPos(windowHandle, -1, 0, 0, 400, 100, 0x0001 | 0x0002 | 0x0010 | 0x0080);
+            Win32.SetForegroundWindow(windowHandle);
+            SetTopMost();
+            int windowStyle = Win32.GetWindowLong(windowHandle,Win32.GWL_EXSTYLE);
+
+            windowStyle |= Win32.WS_EX_TOPMOST;
+
+            Win32.SetWindowLong(windowHandle,Win32.GWL_EXSTYLE, windowStyle);
+
+
+        }
+
+        private void SetTopMost()
+        {
+
+            
+            
+            Win32.BringWindowToTop(windowHandle);
 
 
         }
@@ -110,6 +135,8 @@ namespace EaterCake
         private void UpdateWindowLayout()
         {
 
+            //this.Topmost = true;
+            //SetTopMost();
             int layoutsize = UpdateModuleVisiable();
 
             Console.WriteLine($"Current Layout:{layoutsize}");
@@ -213,7 +240,7 @@ namespace EaterCake
                     modules[index].MonsterHP.Text = $"{MonsterHPHelper.models[index].HP}/{MonsterHPHelper.models[index].maxHP}";
                     modules[index].MonsterName.Text = $"{MonsterHPHelper.models[index].getMonsterNameById()}";
 
-                    double percent = MonsterHPHelper.models[index].HP / MonsterHPHelper.models[index].maxHP;
+                    double percent = Convert.ToDouble(MonsterHPHelper.models[index].HP) / Convert.ToDouble(MonsterHPHelper.models[index].maxHP);
                     percent *= 100;
                     percent = Math.Round(percent, 2);
 

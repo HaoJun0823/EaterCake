@@ -252,11 +252,11 @@ namespace EaterCake
             {
                 case GameType.GE1:
                     BaseAddress = DEFAULT_GE1_BASEADDRESS;
-
+                    SetGameNoTopMost();
                     break;
                 case GameType.GE2:
                     BaseAddress = DEFAULT_GE2_BASEADDRESS;
-
+                    SetGameNoTopMost();
                     break;
                 //case GameType.GE0:
                 //    BaseAddress = new IntPtr(0x0);
@@ -269,6 +269,22 @@ namespace EaterCake
                     break;
             }
 
+
+
+        }
+
+        public static void SetGameNoTopMost()
+        {
+            Console.WriteLine($"Get Game Window Handle:{MainWindow.foregroundWindowId}");
+
+            Win32.SetWindowPos(MainWindow.foregroundWindowId, -2, 0, 0, 0, 0, 0x01 | 0x02 | 0x08 | 0x10);
+            int windowStyle = Win32.GetWindowLong(MainWindow.foregroundWindowId, Win32.GWL_EXSTYLE);
+
+            Console.WriteLine($"Get Game Window Style:{windowStyle}");
+
+            windowStyle &= Win32.WS_EX_TOPMOST;
+
+            Win32.SetWindowLong(MainWindow.foregroundWindowId, Win32.GWL_EXSTYLE, windowStyle);
 
 
         }

@@ -26,7 +26,7 @@ namespace EaterCake
     {
 
         
-        IntPtr foregroundWindowId;
+        public static IntPtr foregroundWindowId;
 
         
 
@@ -48,19 +48,19 @@ namespace EaterCake
             dele = new Win32.WinEventDelegate(WinEventProc);
             IntPtr m_hhook = SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND, IntPtr.Zero, dele, 0, 0, WINEVENT_OUTOFCONTEXT);
 
-            if (String.IsNullOrEmpty(Text_WindowH.Text))
-            {
-                InitDialog();
+
+            InitDialog();
                 
-            }
 
             Text_WindowH.Text = ConfigurationManager.AppSettings["Window_Height"];
             Text_WindowW.Text = ConfigurationManager.AppSettings["Window_Width"];
             Text_FontSize.Text = ConfigurationManager.AppSettings["Window_FontSize"];
 
+            Text_Opcaity.Text = ConfigurationManager.AppSettings["Window_Opacity"];
 
-   
-                RefreshDialog();
+
+
+            RefreshDialog();
             
 
             
@@ -112,6 +112,7 @@ namespace EaterCake
 
             config.AppSettings.Settings["Window_FontSize"].Value = Text_FontSize.Text;
 
+            config.AppSettings.Settings["Window_Opacity"].Value = Text_Opcaity.Text;
 
             config.Save(ConfigurationSaveMode.Full);
 
@@ -124,7 +125,7 @@ namespace EaterCake
         private void RefreshDialog()
         {
 
-            double height, width, left, top,fontsize;
+            double height, width, left, top,fontsize,opcaity;
             
 
             height = Convert.ToDouble(ConfigurationManager.AppSettings["Window_Height"]);
@@ -134,11 +135,14 @@ namespace EaterCake
 
             fontsize = Convert.ToDouble(ConfigurationManager.AppSettings["Window_FontSize"]);
 
+            opcaity = Convert.ToDouble(ConfigurationManager.AppSettings["Window_Opacity"]);
 
             WindowHP.Height = height;
             WindowHP.Width = width;
             WindowHP.Top = top;
             WindowHP.Left = left;
+
+            WindowHP.Opacity = opcaity/100;
 
             //foreach(var i in WindowHP.modules)
             //{
@@ -160,8 +164,15 @@ namespace EaterCake
 
             var currentdir = Directory.GetCurrentDirectory();
 
-            ExtractFile("EaterCake.app.config", currentdir + "\\EaterCake.exe.config");
-            ConfigurationManager.RefreshSection("appSettings");
+            var currentconfig = currentdir + "\\EaterCake.exe.config";
+
+            if(!File.Exists(currentconfig))
+            {
+                ExtractFile("EaterCake.app.config", currentconfig);
+                ConfigurationManager.RefreshSection("appSettings");
+            }
+
+
 
 
 
