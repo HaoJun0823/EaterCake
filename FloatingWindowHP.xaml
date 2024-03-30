@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EaterCake"
         mc:Ignorable="d"
-        Title="FloatingWindowHP" Height="100" Width="400
-" ResizeMode="NoResize" Topmost="True" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+        Title="FloatingWindowHP" Height="100" Width="400" ResizeMode="CanResize" Topmost="True" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Loaded="Window_Loaded" BorderThickness="0" BorderBrush="Aqua" Closing="Window_Closing" >
     <Grid x:Name="RootLayout">
         <Grid.RowDefinitions>
             <RowDefinition Height="25*"></RowDefinition>
@@ -19,10 +18,10 @@
             <ColumnDefinition Width="25*"></ColumnDefinition>
             <ColumnDefinition Width="25*"></ColumnDefinition>
             <ColumnDefinition Width="25*"></ColumnDefinition>
-            
-        </Grid.ColumnDefinitions>
 
-        
-        
+        </Grid.ColumnDefinitions>
     </Grid>
+
+    
+    
 </Window>

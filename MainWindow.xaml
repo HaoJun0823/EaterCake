@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EaterCake"
         mc:Ignorable="d"
-        Title="EaterCake" Height="480" Width="640" ResizeMode="NoResize" >
+        Title="EaterCake" Height="240" Width="480" Topmost="True" Closing="Window_Closing" ResizeMode="CanMinimize" >
 
-        <Grid Margin="32,32,32,32">
+        <!--<Grid Margin="32,32,32,32">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -29,11 +29,42 @@
         <TextBox x:Name="Text_X" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" MinWidth="400" Background="White"></TextBox>
         <TextBox x:Name="Text_Y" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" MinWidth="400" Background="White"></TextBox>
         <TextBox x:Name="Text_Width" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" MinWidth="400" Background="White"></TextBox>
-        <TextBox x:Name="Text_Height" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" MinWidth="400" Background="White"></TextBox>
+        <TextBox x:Name="Text_Height" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" MinWidth="400" Background="White"></TextBox>-->
 
 
+    <Grid Margin="30,30,30,30">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Content="悬浮窗的宽度：" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"></Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Background="White" x:Name="Text_WindowW" PreviewTextInput="WindowW_PreviewTextInput" InputMethod.IsInputMethodEnabled="false"></TextBox>
+
+            <Label Content="悬浮窗的高度：" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"></Label>
+            <TextBox Grid.Column="1" Grid.Row="1" Background="White" x:Name="Text_WindowH" PreviewTextInput="WindowW_PreviewTextInput" InputMethod.IsInputMethodEnabled="false"></TextBox>
+
+            <Label Content="悬浮窗的字体大小：" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"></Label>
+            <TextBox Grid.Column="1" Grid.Row="2" Background="White" x:Name="Text_FontSize" PreviewTextInput="WindowW_PreviewTextInput" InputMethod.IsInputMethodEnabled="false"></TextBox>
+
+            <Button x:Name="Refresh" Content="保存悬浮窗" Grid.Row="3" Grid.Column="0" Click="Refresh_Click"></Button>
+            
+
+        </Grid>
     </Grid>
+    
+    
 
+    <!--</Grid>-->
+
+    
 
     
 

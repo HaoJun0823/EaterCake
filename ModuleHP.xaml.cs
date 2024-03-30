@@ -35,6 +35,13 @@ namespace EaterCake
             
         }
 
+        public void UpdateFontSize(double size)
+        {
+            MonsterName.FontSize = 8 + size;
+            MonsterHP.FontSize = 8 + size;
+            MonsterProgressText.FontSize = 6 + size;
+        }
+
 
         
 
